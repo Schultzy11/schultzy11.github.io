@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Note
+{% endblock %}
+
+{% block main %}
+
+{% if toedit == "main" %}
+
+<form action="{{ url_for('editcomplete', toedit = "main") }}" method = "post">
+
+    <label for="event">Event</label>
+    <input type="text" name="event" value="{{ event }}">
+
+    <label for="date">Date</label>
+    <input type="text" name = "date" value="{{ date }}">
+
+    <label for="bike">Bike</label>
+    <input type="text" name = "bike" value="{{ bike }}">
+
+    <label for="general_notes">Bike</label>
+    <input type="text" name = "general_notes" value="{{ general_notes }}">
+
+
+    <button type="submit">Submit</button>
+</form>
+
+{% else %}
+    <form action="{{ url_for('editcomplete', toedit = list_note_id) }}" method = "post">
+        <label for="position"> position</label>
+        <input type="text" name="position_{{ list_note_id }}" value="{{ position_value }}">
+        <input type="text" name = "{{ list_note_id }}" value="{{ note_value }}">
+        <button type="submit">Submit</button>
+    </form>
+{% endif %}
+
+{% endblock %}
