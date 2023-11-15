@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <h1>Welcome to <i>Tracker</i></h1>
+    <br>
+    <br>
+    <h2>How it works</h2>
+    <br>
+    <p>explain what to do</p>
+    <form action="{{ url_for('createnote')}}" method="post">
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">Event</span>
+        <input name="event" type="text" class="form-control" required>
+        <span class="input-group-text" id="addon-wrapping">Date</span>
+        <input name="date" type="date" class="form-control" required>
+        <span class="input-group-text" id="addon-wrapping">Bike</span>
+        <input name="bike" type="text" class="form-control">
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">General notes</span>
+        <textarea name="general" class="form-control" aria-label="General notes"></textarea>
+    </div>
+      <select name="track_name" class="form-select">
+        <option name="none" selected disabled value="Select Track">Select track</option>
+        {% for track in tracks %}
+          <option name="{{ track.track_name }}" value="{{ track.track_name }}">{{ track.track_name }}</option>
+        {% endfor %}
+          </select>
+
+
+
+      <button type="submit" class="btn btn-success">New Note</button>
+    </form>
+{% endblock %}
+
+
+
+          
+          
+          
